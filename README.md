@@ -2,24 +2,29 @@
 NeoMail is a fully functional, modern email application developed using React and Firebase, inspired by Gmail but designed with a unique UI and user experience. It offers core email functionalities like composing, sending, receiving, and deleting emails, all within a responsive and intuitive interface.
 
 1.Signup Page 
-![image](https://github.com/user-attachments/assets/24902628-5049-4caf-b95c-c098c5f821fb)
+![image](https://github.com/user-attachments/assets/49bd02a7-085b-49c8-bc7b-7cced9b641d1)
+
 
 2.Login Page
-![image](https://github.com/user-attachments/assets/1c243366-2ee2-4df3-abc2-58ed29992562)
+![Screenshot 2025-07-07 121553](https://github.com/user-attachments/assets/d667529c-cba3-471d-a9c0-6c5ba0e129a2)
+
 
 3. Home
-![image](https://github.com/user-attachments/assets/e48bb6d7-d0e1-4f09-9f64-7d458afc49e2)
+![Screenshot 2025-07-07 121902](https://github.com/user-attachments/assets/93b83021-a371-42ec-8245-08d5ba41f80b)
+
 
 4. Email open and delete also
-   ![image](https://github.com/user-attachments/assets/d79d6319-9d8c-4b18-9715-134ba556befe)
+   ![Screenshot 2025-07-07 121938](https://github.com/user-attachments/assets/0e045cf5-e44b-4003-9460-4009b69dddfe)
+
 
 5. database
    Emails =>  in online MongoDb Atlas
-   ![image](https://github.com/user-attachments/assets/a7cb81bf-33e5-47d9-b572-1e29b5736188)
+   ![Screenshot 2025-07-07 124119](https://github.com/user-attachments/assets/ad11920c-a7ae-4e93-a875-58bccdfb4993)
 
 
    Users=>
-   ![image](https://github.com/user-attachments/assets/a69c4e0a-77e5-4cf1-a15f-bb75d2bba964)
+  ![Screenshot 2025-07-07 124227](https://github.com/user-attachments/assets/7bb97c1a-7929-4e31-9a18-d39f1a8da28b)
+
 
 
 
