@@ -9,17 +9,16 @@ import {
 } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-import Navbar from "./components/Navbar";
-import Sidebar from "./components/Sidebar";
-import Inbox from "./components/Inbox";
-import Mail from "./components/Mail";
-import Body from "./components/Body";
-import SendEmail from "./components/sendEmail";
-import Login from "./components/Login";
-import SignUp from "./components/SignUp";
+import Navbar from "./temp_components/Navbar";
+import Sidebar from "./temp_components/Sidebar";
+import Inbox from "./temp_components/Inbox";
+import Mail from "./temp_components/Mail";
+// import Body from "./temp_components/Body";
+import SendEmail from "./temp_components/sendEmail";
+import Login from "./temp_components/Login";
+import SignUp from "./temp_components/SignUp";
 import { Toaster } from "react-hot-toast";
-import { useEffect } from "react";
-
+import { useEffect } from React;
 const Layout = () => {
   const { user } = useSelector((state) => state.app);
   const navigate = useNavigate();
