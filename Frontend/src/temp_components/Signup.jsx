@@ -3,6 +3,9 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
 
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
+axios.defaults.baseURL = backendUrl;
+
 const Signup = () => {
   const [input, setInput] = useState({ fullname: "", email: "", password: "" });
   const navigate = useNavigate();
@@ -15,7 +18,7 @@ const Signup = () => {
     e.preventDefault();
     try {
       const res = await axios.post(
-        "http://localhost:8080/api/v1/user/register",
+        "/api/v1/user/register",
         input,
         {
           headers: { "Content-Type": "application/json" },
