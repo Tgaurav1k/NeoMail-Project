@@ -6,7 +6,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://localhost:8080', // your backend
+        target: 'https://neo-mail-project.vercel.app', // your backend
         changeOrigin: true,
         secure: false,
       },
