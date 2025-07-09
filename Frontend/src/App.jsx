@@ -9,14 +9,14 @@ import {
 } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-import Navbar from "./Components/Navbar";
-import Sidebar from "./Components/Sidebar";
-import Inbox from "./Components/Inbox";
-import Mail from "./Components/Mail";
-import Body from "./Components/Body";
-import SendEmail from "./Components/sendEmail";
-import Login from "./Components/Login";
-import SignUp from "./Components/SignUp";
+import Navbar from "./components/Navbar";
+import Sidebar from "./components/Sidebar";
+import Inbox from "./components/Inbox";
+import Mail from "./components/Mail";
+import Body from "./components/Body";
+import SendEmail from "./components/sendEmail";
+import Login from "./components/Login";
+import SignUp from "./components/SignUp";
 import { Toaster } from "react-hot-toast";
 import { useEffect } from "react";
 
