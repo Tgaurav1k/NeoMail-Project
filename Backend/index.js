@@ -31,7 +31,8 @@ app.use(cookieParser());
 // paste url for connection
 // 🔥 Use this if you're always testing from localhost:5173 (React)
 app.use(cors({
-  origin: ["https://neo-mail-gauravkumar.vercel.app"],
+  origin: ["http://localhost:5173",
+     "https://neo-mail-gauravkumar.vercel.app","http://localhost:5174"],
   credentials: true,
 }));
 
