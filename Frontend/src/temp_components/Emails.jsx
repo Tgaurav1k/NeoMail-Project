@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Email from './Email'
-import useGetAllEmails from '../hooks/usegetAllEmails';
+import useGetAllEmails from '../hooks/useGetAllEmails';
 import { useSelector } from 'react-redux';
 
 const Emails = () => {
