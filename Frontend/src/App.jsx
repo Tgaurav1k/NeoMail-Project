@@ -20,7 +20,7 @@ import Inbox from "./temp_components/Inbox";
 import Mail from "./temp_components/Mail";
 import SendEmail from "./temp_components/SendEmail";
 import Login from "./temp_components/Login";
-import SignUp from "./temp_components/SignUp";
+import Signup from "./temp_components/Signup";
 
 const Layout = () => {
   const { user } = useSelector((state) => state.app);
@@ -71,7 +71,7 @@ const appRouter = createBrowserRouter([
   },
   {
     path: "/signup",
-    element: <SignUp />,
+    element: <Signup />,
   },
 ]);
 
