@@ -40,14 +40,17 @@ app.use(cors({
 // routes 
 app.use("/api/v1/user", userRoute);
 
-"http://localhost:8080/api/v1/user/register"
-"http://localhost:8080/api/v1/user/login"
+// "http://localhost:8080/api/v1/user/register"
+// "http://localhost:8080/api/v1/user/login"
 
 app.use("/api/v1/email", emailRoute);
 
+if (process.env.NODE_ENV !== "production") {
 
-app.listen(PORT, "0.0.0.0", ()=>{
+  app.listen(PORT, "0.0.0.0", ()=>{
     console.log(`
         localhost:8080/home
         Server running at port ${PORT}`);
-})
+});
+}
+export default app;
