@@ -34,7 +34,6 @@ const Login = () => {
 
   return (
     <div className="bg-[#F6F8FC] w-screen h-screen">
-      {/* Gmail-style top bar */}
       <div className="flex items-center gap-2 px-6 py-4">
         <img
           src="https://cdn.prod.website-files.com/637f48edfbc9b4ce91c37e03/679a57dbdcafe48d7559beaa_83642ca3-1b07-4308-94e8-7b8c0de4d48a.png"
@@ -44,7 +43,6 @@ const Login = () => {
         <h1 className="text-2xl font-medium text-gray-600">NeoMail</h1>
       </div>
 
-      {/* Centered form */}
       <div className="flex items-center justify-center mt-10">
         <form
           onSubmit={submitHandler}
