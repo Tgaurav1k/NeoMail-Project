@@ -30,55 +30,89 @@ NeoMail is a fully functional, modern email application developed using React an
   <img width="1364" height="677" alt="Screenshot 2025-07-07 124227" src="https://github.com/user-attachments/assets/389e9949-8925-4e9b-8176-f13479e31e2c" />
 
 
-
-
-
-
-
 NeoMail is a full-stack email client inspired by Gmail, built using the MERN stack (MongoDB, Express.js, React.js, Node.js). This project demonstrates core features of a modern email application including authentication, inbox management, composing emails, and secure API communication, all wrapped in a responsive and intuitive UI.
 
 
-🔧 Project Overview:
-Frontend: Built with React and Tailwind CSS, providing a clean and responsive UI.
 
-Users can sign up, log in, view emails, compose new messages, and navigate using protected routes.
+## 📌 Features
 
-Frontend structure includes reusable components and proper route management.
+- ✅ User Signup & Login (JWT + secure cookie-based auth)
+- 📨 Compose and Send Emails
+- 📬 View Inbox and Delete Emails
+- 🔐 HTTP-only JWT cookie authentication
+- 🧠 Global state managed with Redux Toolkit + `redux-persist`
+- 🌐 Fully deployed on Vercel (frontend + backend)
+- 💅 Responsive UI with TailwindCSS
+- 🧾 Clean folder structure and scalable codebase
 
-Backend: Developed using Node.js, Express.js, and MongoDB.
+---
 
-Implements RESTful APIs for user and email operations.
+## ⚙️ Tech Stack
 
-Includes authentication middleware, MongoDB models for User and Email, and modular route controllers for scalability.
+### 🖥 Frontend:
+- React + Vite
+- Redux Toolkit + redux-persist
+- TailwindCSS
+- Axios
 
-Authentication: Secure login system using JWT-based auth and middleware to protect routes.
+### 🌐 Backend:
+- Node.js + Express
+- MongoDB Atlas + Mongoose
+- JWT Authentication
+- CORS, Cookie-parser
 
-Email Features:
+### ☁️ Deployment:
+- Frontend & Backend hosted on [**Vercel**](https://vercel.com/)
+- MongoDB Atlas (Cloud database)
 
-Compose, send, and view emails stored in MongoDB.
+---
 
-Uses clean REST API patterns for backend communication.
 
-Code Quality: Well-organized folder structure with separation of concerns:
+🚀 Getting Started
+1. Clone the Repository
+bash
+Copy
+Edit
+git clone https://github.com/Tgaurav1k/NeoMail-Project.git
+cd NeoMail-Project
+2. Set up Environment Variables
+Create .env files in both backend/ and frontend/ directories with the following (example):
 
-/controllers for business logic
+.env for Backend
+env
+Copy
+Edit
+MONGO_URI=your_mongo_connection_string
+SECRET_KEY=your_jwt_secret
+JWT_EXPIRE=1h
+3. Install Dependencies
+bash
+Copy
+Edit
+# For backend
+cd backend
+npm install
 
-/routes for API endpoints
+# For frontend
+cd ../frontend
+npm install
+4. Run Locally
+bash
+Copy
+Edit
+# Backend
+npm run dev --prefix backend
 
-/models for schema definition
+# Frontend
+npm run dev --prefix frontend
 
-/middleware for authentication
 
-🚀 Deployment & Usage:
-The project is structured for deployment with separate frontend and backend apps.
+## 📂 Folder Structure
 
-Can be hosted on platforms like Render (backend) and Vercel/Netlify (frontend).
+```bash
+NeoMail-Project/
+├── backend/          # Express serverless functions (API routes)
+├── frontend/         # React + Vite frontend app
+├── .env              # Environment variables (local)
+└── README.md         # Project documentation
 
-🧪 Tech Stack:
-Frontend: React, Tailwind CSS, React Router
-
-Backend: Node.js, Express.js, MongoDB, Mongoose
-
-Auth: JWT (JSON Web Token)
-
-Dev Tools: Postman, ESLint, VSCode, Git
