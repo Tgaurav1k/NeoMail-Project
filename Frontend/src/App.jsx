@@ -14,9 +14,9 @@ import Sidebar from "./Components/Sidebar";
 import Inbox from "./Components/Inbox";
 import Mail from "./Components/Mail";
 import Body from "./Components/Body";
-import SendEmail from "./Components/sendEmail";
+import SendEmail from "./Components/SendEmail";
 import Login from "./Components/Login";
-import SignUp from "./Components/SignUp";
+import SignUp from "./Components/Signup";
 import { Toaster } from "react-hot-toast";
 import { useEffect } from "react";
 
