@@ -11,7 +11,7 @@ import emailRoute from "./routes/email.route.js"
 
 dotenv.config({});
 connectDB();
-const PORT = 8080;  // port as random
+const PORT = process.env.PORT || 8080;
 const app = express();  // import app 
 
 app.get("/", (req, res) => {
@@ -24,7 +24,7 @@ app.get("/", (req, res) => {
 // })
 
 // middleware
-app.use(express.urlencoded({extended:true}));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
 
@@ -35,19 +35,22 @@ app.use(cors({
   credentials: true,
 }));
 
- // ← ← ← 🔥 THIS WAS MISSING
-
 // routes 
 app.use("/api/v1/user", userRoute);
 
-"http://localhost:8080/api/v1/user/register"
-"http://localhost:8080/api/v1/user/login"
+// "http://localhost:8080/api/v1/user/register"
+// "http://localhost:8080/api/v1/user/login"
 
 app.use("/api/v1/email", emailRoute);
 
 
-app.listen(PORT, "0.0.0.0", ()=>{
+// Only start server if not running in a serverless environment (like Vercel)
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, "0.0.0.0", () => {
     console.log(`
-        localhost:8080/home
+        localhost:${PORT}/home
         Server running at port ${PORT}`);
-})
+  });
+}
+
+export default app;
