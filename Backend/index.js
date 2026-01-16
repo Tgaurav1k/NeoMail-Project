@@ -30,10 +30,12 @@ app.use(cookieParser());
 
 // paste url for connection
 // 🔥 Use this if you're always testing from localhost:5173 (React)
-app.use(cors({
-  origin: ["http://localhost:5173", "http://localhost:5174"],
-  credentials: true,
-}));
+const corsOptions = {
+    origin: process.env.FRONTEND_URL || "http://localhost:5173",
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE"],
+};
+app.use(cors(corsOptions));
 
 // routes 
 app.use("/api/v1/user", userRoute);
