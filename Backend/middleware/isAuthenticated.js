@@ -5,8 +5,9 @@ const isAuthenticated = async(req, res, next) =>{
         // required token login krne ke liye
         const token = req.cookies.token;
         
-        // emails get 
-        // // console.log(token);
+        // Debug logging (remove in production if needed)
+        console.log("Auth check - Cookies:", req.cookies);
+        console.log("Auth check - Token exists:", !!token);
       
         // if token is not found
         if(!token){
@@ -26,7 +27,8 @@ const isAuthenticated = async(req, res, next) =>{
 
     }
      catch (error) {
-        console.log(error);
+        console.log("Auth error:", error);
+        return res.status(401).json({ message: "Authentication failed", error: error.message });
     }
 }
 export default isAuthenticated;
