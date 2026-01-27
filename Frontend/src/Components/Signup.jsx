@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 
 const Signup = () => {
   const [input, setInput] = useState({ fullname: "", email: "", password: "" });
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
   const changeHandler = (e) => {
@@ -67,14 +69,27 @@ const Signup = () => {
             placeholder="Email"
             className="border border-gray-300 rounded-md px-4 py-2 mb-4 w-full"
           />
-          <input
-            onChange={changeHandler}
-            value={input.password}
-            name="password"
-            type="password"
-            placeholder="Password"
-            className="border border-gray-300 rounded-md px-4 py-2 mb-4 w-full"
-          />
+          <div className="relative mb-4">
+            <input
+              onChange={changeHandler}
+              value={input.password}
+              name="password"
+              type={showPassword ? "text" : "password"}
+              placeholder="Password"
+              className="border border-gray-300 rounded-md px-4 py-2 w-full pr-10"
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 focus:outline-none"
+            >
+              {showPassword ? (
+                <AiOutlineEyeInvisible size={20} />
+              ) : (
+                <AiOutlineEye size={20} />
+              )}
+            </button>
+          </div>
           <button
             type="submit"
             className="bg-gray-800 text-white py-2 rounded-md w-full hover:bg-gray-700"

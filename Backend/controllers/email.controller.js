@@ -1,4 +1,5 @@
 import {Email} from "../models/email.model.js"
+import {User} from "../models/user.model.js"
 
 export const createEmail = async(req,res)=>{
     try {
@@ -22,11 +23,20 @@ export const createEmail = async(req,res)=>{
             message,
             userId
         });
+        
+        // Populate sender information before sending response
+        const populatedEmail = await Email.findById(email._id)
+            .populate('userId', 'fullname email profilePhoto');
+        
         return res
         .status(201)
-        .json({email})
+        .json({email: populatedEmail})
     } catch (error) {
-        
+        console.log(error);
+        return res.status(500).json({ 
+            message: "Internal server error", 
+            success: false 
+        });
     }
 }
  
@@ -63,7 +73,21 @@ export const getAllEmailById = async(req,res)=>{
     try {
              const userId = req.id;
 
-             const emails = await Email.find({userId});
+             // Get user's email address
+             const user = await User.findById(userId);
+             if (!user) {
+                 return res.status(404).json({ message: "User not found" });
+             }
+
+             // Get emails where:
+             // 1. userId matches (emails sent BY this user) OR
+             // 2. to field matches user's email (emails received BY this user)
+             const emails = await Email.find({
+                 $or: [
+                     { userId: userId },  // Sent emails
+                     { to: user.email }   // Received emails
+                 ]
+             }).populate('userId', 'fullname email profilePhoto').sort({ createdAt: -1 });
 
              return res
              .status(200)
@@ -71,6 +95,6 @@ export const getAllEmailById = async(req,res)=>{
 
     } catch (error) {
         console.log(error)
-        
+        return res.status(500).json({ message: "Internal server error" });
     }
 }

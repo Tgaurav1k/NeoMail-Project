@@ -28,9 +28,12 @@ const SendEmail = () => {
                 withCredentials: true
             });
             dispatch(setEmails([...emails, res.data.email]));
+            toast.success("Email sent successfully!");
+            // Clear form
+            setFormData({ to: "", subject: "", message: "" });
         } catch (error) {
             console.log(error);
-            toast.error(error.response.data.message);
+            toast.error(error.response?.data?.message || "Failed to send email");
         }
         dispatch(setOpen(false));
     }
