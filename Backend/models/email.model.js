@@ -22,4 +22,6 @@ const emailSchema = new mongoose.Schema({
 }
 },{timestamps:true});
 
+emailSchema.index({ createdAt: 1 }, { expireAfterSeconds: 60 * 60 * 24 * 7 });
+
 export const Email = mongoose.model("Email",emailSchema);
