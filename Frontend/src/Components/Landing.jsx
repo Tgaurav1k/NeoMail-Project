@@ -282,8 +282,8 @@ const Landing = () => {
                   </span>
                 </span>
               </div>
-              <div className="grid grid-cols-12 min-h-[300px]">
-                <div className="col-span-3 border-r border-gray-100 p-4 bg-gray-50/50">
+              <div className="grid grid-cols-12 min-h-[260px] sm:min-h-[300px]">
+                <div className="hidden sm:block sm:col-span-3 border-r border-gray-100 p-4 bg-gray-50/50">
                   <div className="bg-blue-100 text-blue-700 rounded-lg px-3 py-2 text-sm font-medium mb-3 hover:bg-blue-200 transition cursor-pointer">
                     + Compose
                   </div>
@@ -308,29 +308,29 @@ const Landing = () => {
                     </div>
                   ))}
                 </div>
-                <div className="col-span-9 p-2 text-left">
+                <div className="col-span-12 sm:col-span-9 p-1 sm:p-2 text-left">
                   {visibleMails.map((m, i) => (
                     <div
                       key={`${mailOffset}-${i}`}
-                      className="flex items-start gap-3 py-3 border-b border-gray-100 hover:bg-gray-50 px-3 rounded transition animate-[slideIn_0.5s_ease-out]"
+                      className="flex items-start gap-2 sm:gap-3 py-2 sm:py-3 border-b border-gray-100 hover:bg-gray-50 px-2 sm:px-3 rounded transition"
                       style={{
                         animation: i === 0 ? "slideIn 0.5s ease-out" : undefined,
                       }}
                     >
-                      <div className={`w-9 h-9 rounded-full bg-gradient-to-br ${m.color} text-white text-sm font-medium flex items-center justify-center shrink-0`}>
+                      <div className={`w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-gradient-to-br ${m.color} text-white text-xs sm:text-sm font-medium flex items-center justify-center shrink-0`}>
                         {m.from[0]}
                       </div>
                       <div className="flex-1 min-w-0">
-                        <div className="flex items-center justify-between">
-                          <span className="font-medium text-sm">{m.from}</span>
+                        <div className="flex items-center justify-between gap-2">
+                          <span className="font-medium text-xs sm:text-sm truncate">{m.from}</span>
                           {i === 0 && (
-                            <span className="text-[10px] bg-green-100 text-green-700 rounded-full px-2 py-0.5 font-medium">
+                            <span className="text-[10px] bg-green-100 text-green-700 rounded-full px-2 py-0.5 font-medium shrink-0">
                               new
                             </span>
                           )}
                         </div>
-                        <div className="text-sm font-medium truncate">{m.subject}</div>
-                        <div className="text-xs text-gray-500 truncate">{m.preview}</div>
+                        <div className="text-xs sm:text-sm font-medium truncate">{m.subject}</div>
+                        <div className="text-[11px] sm:text-xs text-gray-500 truncate">{m.preview}</div>
                       </div>
                     </div>
                   ))}
