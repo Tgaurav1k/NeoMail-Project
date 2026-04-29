@@ -14,7 +14,11 @@ import {
   HiOutlineUserGroup,
   HiOutlinePaperAirplane,
   HiOutlineClock,
+  HiOutlineChat,
 } from "react-icons/hi";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
+
+const CONTACT_EMAIL = "tgaurav1k@gmail.com";
 
 const ROTATING_WORDS = ["modern web", "fast minds", "your team", "everyone"];
 
@@ -461,6 +465,75 @@ const Landing = () => {
         </div>
       </section>
 
+      {/* Contact Us */}
+      <section
+        id="contact"
+        className="max-w-4xl mx-auto px-6 md:px-12 py-16"
+      >
+        <div className="text-center mb-10">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-xs md:text-sm font-medium mb-4 border border-blue-100">
+            <HiOutlineChat size={16} />
+            Get in touch
+          </div>
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Contact us</h2>
+          <p className="mt-3 text-gray-600 max-w-xl mx-auto">
+            Questions, feedback, or just want to say hi? We'd love to hear from you.
+          </p>
+        </div>
+
+        <div className="bg-white rounded-2xl border border-gray-100 p-6 md:p-10 shadow-sm">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <a
+              href={`mailto:${CONTACT_EMAIL}`}
+              className="group flex items-start gap-4 p-5 rounded-xl hover:bg-blue-50 transition border border-transparent hover:border-blue-100"
+            >
+              <div className="bg-blue-100 text-blue-600 p-3 rounded-xl group-hover:scale-110 transition-transform">
+                <HiOutlineMail size={22} />
+              </div>
+              <div className="min-w-0">
+                <div className="text-sm text-gray-500 mb-1">Email us</div>
+                <div className="font-medium text-gray-800 break-all group-hover:text-blue-600 transition">
+                  {CONTACT_EMAIL}
+                </div>
+                <div className="text-xs text-gray-500 mt-1">
+                  We reply within 24 hours
+                </div>
+              </div>
+            </a>
+
+            <a
+              href="https://github.com/Tgaurav1k"
+              target="_blank"
+              rel="noreferrer"
+              className="group flex items-start gap-4 p-5 rounded-xl hover:bg-gray-50 transition border border-transparent hover:border-gray-200"
+            >
+              <div className="bg-gray-100 text-gray-700 p-3 rounded-xl group-hover:scale-110 transition-transform">
+                <FaGithub size={22} />
+              </div>
+              <div className="min-w-0">
+                <div className="text-sm text-gray-500 mb-1">GitHub</div>
+                <div className="font-medium text-gray-800 group-hover:text-gray-900 transition">
+                  @Tgaurav1k
+                </div>
+                <div className="text-xs text-gray-500 mt-1">
+                  See the source code
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <div className="mt-6 text-center">
+            <a
+              href={`mailto:${CONTACT_EMAIL}?subject=Hello%20NeoMail`}
+              className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-medium px-6 py-3 rounded-lg shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all"
+            >
+              <HiOutlineMail size={18} />
+              Send a message
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* Final CTA */}
       <section className="max-w-4xl mx-auto px-6 md:px-12 py-16">
         <div className="relative bg-gradient-to-r from-blue-600 to-indigo-600 rounded-3xl p-10 md:p-14 text-center text-white shadow-xl overflow-hidden">
@@ -486,16 +559,51 @@ const Landing = () => {
 
       {/* Footer */}
       <footer className="border-t border-gray-100 bg-white/60">
-        <div className="max-w-6xl mx-auto px-6 md:px-12 py-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-500">
-          <div className="flex items-center gap-2">
-            <div className="bg-blue-600 text-white p-1.5 rounded-md">
-              <HiOutlineMail size={14} />
+        <div className="max-w-6xl mx-auto px-6 md:px-12 py-10">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 mb-8">
+            <div>
+              <div className="flex items-center gap-2 mb-3">
+                <div className="bg-blue-600 text-white p-1.5 rounded-md">
+                  <HiOutlineMail size={14} />
+                </div>
+                <span className="font-semibold text-gray-700">NeoMail</span>
+              </div>
+              <p className="text-sm text-gray-500 leading-relaxed">
+                A fast, secure, and beautifully simple email client for the modern web.
+              </p>
             </div>
-            <span>© {new Date().getFullYear()} NeoMail. All rights reserved.</span>
+            <div>
+              <div className="text-sm font-semibold text-gray-700 mb-3">Product</div>
+              <div className="flex flex-col gap-2 text-sm text-gray-500">
+                <Link to="/login" className="hover:text-blue-600 transition w-fit">Login</Link>
+                <Link to="/signup" className="hover:text-blue-600 transition w-fit">Sign up</Link>
+                <a href="#contact" className="hover:text-blue-600 transition w-fit">Contact</a>
+              </div>
+            </div>
+            <div>
+              <div className="text-sm font-semibold text-gray-700 mb-3">Reach out</div>
+              <div className="flex flex-col gap-2 text-sm text-gray-500">
+                <a
+                  href={`mailto:${CONTACT_EMAIL}`}
+                  className="hover:text-blue-600 transition flex items-center gap-2 w-fit break-all"
+                >
+                  <HiOutlineMail size={14} className="shrink-0" />
+                  {CONTACT_EMAIL}
+                </a>
+                <a
+                  href="https://github.com/Tgaurav1k"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="hover:text-blue-600 transition flex items-center gap-2 w-fit"
+                >
+                  <FaGithub size={14} />
+                  @Tgaurav1k
+                </a>
+              </div>
+            </div>
           </div>
-          <div className="flex items-center gap-5">
-            <Link to="/login" className="hover:text-blue-600 transition">Login</Link>
-            <Link to="/signup" className="hover:text-blue-600 transition">Sign up</Link>
+          <div className="border-t border-gray-100 pt-6 text-sm text-gray-500 text-center">
+            © {new Date().getFullYear()} NeoMail. All rights reserved.
           </div>
         </div>
       </footer>
