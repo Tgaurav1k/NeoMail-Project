@@ -176,7 +176,7 @@ const Landing = () => {
     },
     {
       q: "Where is my data stored?",
-      a: "On MongoDB Atlas, hosted in AWS Mumbai. Emails older than 7 days are automatically pruned to keep your inbox snappy.",
+      a: "On MongoDB Atlas, hosted in AWS Mumbai with daily backups and encryption at rest.",
     },
   ];
 
