@@ -27,7 +27,7 @@ const Login = () => {
       if (res.data.success) {
         dispatch(setAuthUser(res.data.user));
         toast.success(res.data.message);
-        navigate("/");
+        navigate("/inbox");
       }
     } catch (error) {
       toast.error(error.response?.data?.message || "Login failed");
@@ -89,7 +89,7 @@ const Login = () => {
             Login
           </button>
           <p className="text-sm text-center mt-4">
-            Don't have an account? <Link to="/login" className="text-blue-600">Signup</Link>
+            Don't have an account? <Link to="/signup" className="text-blue-600">Signup</Link>
           </p>
         </form>
       </div>

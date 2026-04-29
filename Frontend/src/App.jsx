@@ -17,6 +17,7 @@ import Body from "./Components/Body";
 import SendEmail from "./Components/SendEmail";
 import Login from "./Components/Login";
 import SignUp from "./Components/Signup";
+import Landing from "./Components/Landing";
 import { Toaster } from "react-hot-toast";
 import { useEffect } from "react";
 
@@ -25,7 +26,7 @@ const Layout = () => {
   const navigate = useNavigate();
   useEffect(() => {
     if (!user) {
-      navigate("/login");
+      navigate("/");
     }
   }, [user]);
 
@@ -50,14 +51,24 @@ const Layout = () => {
 const appRouter = createBrowserRouter([
   {
     path: "/",
-    element: <Layout />, // ✅ Includes Navbar + Sidebar
+    element: <Landing />,
+  },
+  {
+    path: "/inbox",
+    element: <Layout />,
     children: [
       {
-        path: "/",
+        path: "",
         element: <Inbox />,
       },
+    ],
+  },
+  {
+    path: "/mail/:id",
+    element: <Layout />,
+    children: [
       {
-        path: "/mail/:id",
+        path: "",
         element: <Mail />,
       },
     ],

@@ -58,7 +58,7 @@ function Mail() {
         { withCredentials: true }
       );
       toast.success(res.data.message || "delete successful");
-      navigate("/");
+      navigate("/inbox");
     } catch (error) {
       console.log(error);
     }
@@ -69,7 +69,7 @@ function Mail() {
       <div className="flex items-center justify-between px-4">
         <div className="flex items-center gap-2 text-gray-700">
           <div
-            onClick={() => navigate("/")}
+            onClick={() => navigate("/inbox")}
             className="p-2 rounded-full hover:bg-gray-200"
           >
             <IoMdArrowBack size="20px" />
