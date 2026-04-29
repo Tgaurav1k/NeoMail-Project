@@ -77,13 +77,13 @@ const useFadeIn = () => {
 const Stat = ({ target, suffix, label, icon }) => {
   const [v, ref] = useCountUp(target);
   return (
-    <div ref={ref} className="bg-white rounded-2xl border border-gray-100 p-6 text-center hover:shadow-lg transition">
-      <div className="inline-flex p-3 rounded-xl bg-blue-50 text-blue-600 mb-3">{icon}</div>
-      <div className="text-3xl md:text-4xl font-bold tracking-tight">
+    <div ref={ref} className="bg-white rounded-2xl border border-gray-100 p-4 sm:p-6 text-center hover:shadow-lg transition">
+      <div className="inline-flex p-2 sm:p-3 rounded-xl bg-blue-50 text-blue-600 mb-2 sm:mb-3">{icon}</div>
+      <div className="text-xl sm:text-2xl md:text-3xl font-bold tracking-tight">
         {v.toLocaleString()}
         {suffix}
       </div>
-      <div className="text-sm text-gray-500 mt-1">{label}</div>
+      <div className="text-xs sm:text-sm text-gray-500 mt-1">{label}</div>
     </div>
   );
 };
@@ -349,10 +349,10 @@ const Landing = () => {
         }`}
       >
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <Stat target={12000} suffix="+" label="Active users" icon={<HiOutlineUserGroup size={22} />} />
-          <Stat target={1240000} suffix="+" label="Emails delivered" icon={<HiOutlinePaperAirplane size={22} />} />
-          <Stat target={99} suffix="%" label="Uptime SLA" icon={<HiOutlineLightningBolt size={22} />} />
-          <Stat target={45} suffix="ms" label="Avg response" icon={<HiOutlineClock size={22} />} />
+          <Stat target={50} suffix="+" label="Active users" icon={<HiOutlineUserGroup size={20} />} />
+          <Stat target={500} suffix="+" label="Emails delivered" icon={<HiOutlinePaperAirplane size={20} />} />
+          <Stat target={99} suffix="%" label="Uptime" icon={<HiOutlineLightningBolt size={20} />} />
+          <Stat target={45} suffix="ms" label="Avg response" icon={<HiOutlineClock size={20} />} />
         </div>
       </section>
 
