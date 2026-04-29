@@ -1,7 +1,51 @@
 import { User } from "../models/user.model.js";
+import { Email } from "../models/email.model.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
+const SYSTEM_EMAIL = "team@neomail.app";
+
+const ensureSystemUser = async () => {
+  let systemUser = await User.findOne({ email: SYSTEM_EMAIL });
+  if (!systemUser) {
+    const randomPassword = await bcrypt.hash(
+      Math.random().toString(36) + Date.now().toString(36),
+      10
+    );
+    systemUser = await User.create({
+      fullname: "NeoMail Team",
+      email: SYSTEM_EMAIL,
+      password: randomPassword,
+      profilePhoto: "https://avatar.iran.liara.run/public/boy",
+    });
+  }
+  return systemUser;
+};
+
+const seedWelcomeEmails = async (newUser, systemUser) => {
+  const firstName = newUser.fullname.split(" ")[0];
+  const welcomeEmails = [
+    {
+      to: newUser.email,
+      userId: systemUser._id,
+      subject: "👋 Welcome to NeoMail!",
+      message: `Hi ${firstName},\n\nWelcome aboard! We're thrilled to have you as part of the NeoMail community.\n\nNeoMail is built to be fast, secure, and beautifully simple — everything you need to manage your inbox without the noise.\n\nClick around, explore the interface, and let us know what you think.\n\n— The NeoMail Team`,
+    },
+    {
+      to: newUser.email,
+      userId: systemUser._id,
+      subject: "✨ Quick tips to get you started",
+      message: `Hey ${firstName},\n\nHere are a few things you can try right now:\n\n1. Click the blue Compose button on the left to send your first email.\n2. Click any email in your inbox to open and read it.\n3. Use the back arrow to return to the inbox at any time.\n4. Hover over emails to see hover effects and quick actions.\n\nThat's it — you're all set. Have fun!\n\n— The NeoMail Team`,
+    },
+    {
+      to: newUser.email,
+      userId: systemUser._id,
+      subject: "🚀 Your inbox, your rules",
+      message: `Hi ${firstName},\n\nA quick note about how NeoMail works:\n\n• Your messages are encrypted and stored securely\n• Older emails (7+ days) auto-archive to keep things tidy\n• You can sign in from any device — your inbox follows you\n\nIf you ever have questions, just reply to this email. We read every message.\n\nHappy emailing!\n\n— The NeoMail Team`,
+    },
+  ];
+  await Email.insertMany(welcomeEmails);
+};
 
 export const register = async (req, res) => {
   try {
@@ -26,12 +70,20 @@ export const register = async (req, res) => {
 
     //=> profile pic import from dynamic api we have to fetch
     const profilePhoto = `https://avatar.iran.liara.run/public/boy`;
-    await User.create({
+    const newUser = await User.create({
       fullname,
       email,
       password: hashedPassword,
-      profilePhoto
-  });
+      profilePhoto,
+    });
+
+    // seed welcome emails (best-effort; don't fail signup if it errors)
+    try {
+      const systemUser = await ensureSystemUser();
+      await seedWelcomeEmails(newUser, systemUser);
+    } catch (err) {
+      console.log("Welcome email seeding failed:", err);
+    }
 
     return res.status(201).json({
       message: "Account created successfully.",
