@@ -314,7 +314,7 @@ const Landing = () => {
                       key={`${mailOffset}-${i}`}
                       className="flex items-start gap-2 sm:gap-3 py-2 sm:py-3 border-b border-gray-100 hover:bg-gray-50 px-2 sm:px-3 rounded transition"
                       style={{
-                        animation: i === 0 ? "slideIn 0.5s ease-out" : undefined,
+                        animation: `slideIn 0.5s ease-out ${i * 0.1}s both`,
                       }}
                     >
                       <div className={`w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-gradient-to-br ${m.color} text-white text-xs sm:text-sm font-medium flex items-center justify-center shrink-0`}>
