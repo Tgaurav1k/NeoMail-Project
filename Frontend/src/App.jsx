@@ -35,12 +35,14 @@ const Layout = () => {
   return (
     <>
       <Navbar />
-      <div className="flex">
+      <div className="flex relative">
         <Sidebar />
-        <Outlet /> {/* Nested pages like Inbox and Mail */}
+        <main className="flex-1 min-w-0">
+          <Outlet />
+        </main>
       </div>
       {user && (
-        <div className="absolute w-30% bottom-0 right-20 z-10">
+        <div className="fixed bottom-0 right-0 sm:right-4 md:right-20 left-0 sm:left-auto z-20">
           <SendEmail />
         </div>
       )}
@@ -85,7 +87,7 @@ const appRouter = createBrowserRouter([
 
 function App() {
   return (
-    <div className="bg-[#F6F8FC] h-screen">
+    <div className="bg-[#F6F8FC] min-h-screen">
       <Toaster position="top-right" reverseOrder={false} />
       <RouterProvider router={appRouter} />
     </div>

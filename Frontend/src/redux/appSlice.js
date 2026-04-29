@@ -8,6 +8,7 @@ const appSlice = createSlice({
         emails: [],
         selectedEmail: null,
         searchText:"",
+        sidebarOpen: false,
     },
     reducers: {
         // actions
@@ -31,6 +32,12 @@ const appSlice = createSlice({
         setSearchText:(state,action) => {
             state.searchText = action.payload;
         },
+        toggleSidebar: (state) => {
+            state.sidebarOpen = !state.sidebarOpen;
+        },
+        setSidebarOpen: (state, action) => {
+            state.sidebarOpen = action.payload;
+        },
         // update a single email and re-sort (pinned first, then newest)
         upsertEmail: (state, action) => {
             const updated = action.payload;
@@ -46,5 +53,5 @@ const appSlice = createSlice({
         }
     }
 });
-export const { setOpen, setAuthUser, setEmails, setSelectedEmail, setSearchText, upsertEmail } = appSlice.actions;
+export const { setOpen, setAuthUser, setEmails, setSelectedEmail, setSearchText, upsertEmail, toggleSidebar, setSidebarOpen } = appSlice.actions;
 export default appSlice.reducer;

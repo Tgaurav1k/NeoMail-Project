@@ -65,66 +65,63 @@ function Mail() {
   };
 
   return (
-    <div className="flex-1 bg-white rounded-xl mx-5">
-      <div className="flex items-center justify-between px-4">
-        <div className="flex items-center gap-2 text-gray-700">
-          <div
+    <div className="flex-1 min-w-0 bg-white rounded-none sm:rounded-xl mx-0 sm:mx-3 md:mx-5">
+      <div className="flex items-center justify-between px-2 sm:px-4 py-2">
+        <div className="flex items-center gap-1 sm:gap-2 text-gray-700 overflow-x-auto">
+          <button
             onClick={() => navigate("/inbox")}
-            className="p-2 rounded-full hover:bg-gray-200"
+            className="p-2 rounded-full hover:bg-gray-200 shrink-0"
           >
             <IoMdArrowBack size="20px" />
-          </div>
-          <div className="p-2 rounded-full hover:bg-gray-200">
+          </button>
+          <div className="hidden sm:block p-2 rounded-full hover:bg-gray-200">
             <BiArchive size="20px" />
           </div>
-          <div className="p-2 rounded-full hover:bg-gray-200">
+          <div className="hidden sm:block p-2 rounded-full hover:bg-gray-200">
             <MdOutlineReport size="20px" />
           </div>
-          <div
+          <button
             onClick={deleteHandler}
-            className="p-2 rounded-full hover:bg-gray-200"
+            className="p-2 rounded-full hover:bg-gray-200 shrink-0"
           >
             <MdDeleteOutline size="20px" />
-          </div>
-          <div className="p-2 rounded-full hover:bg-gray-200">
+          </button>
+          <div className="hidden md:block p-2 rounded-full hover:bg-gray-200">
             <MdOutlineMarkEmailRead size="20px" />
           </div>
-          <div className="p-2 rounded-full hover:bg-gray-200">
-            <IoMdArrowBack size="20px" />
-          </div>
-          <div className="p-2 rounded-full hover:bg-gray-200">
+          <div className="hidden md:block p-2 rounded-full hover:bg-gray-200">
             <MdOutlineWatchLater size="20px" />
           </div>
-          <div className="p-2 rounded-full hover:bg-gray-200">
+          <div className="hidden md:block p-2 rounded-full hover:bg-gray-200">
             <MdOutlineAddTask size="20px" />
           </div>
-          <div className="p-2 rounded-full hover:bg-gray-200">
+          <div className="hidden md:block p-2 rounded-full hover:bg-gray-200">
             <MdOutlineDriveFileMove size="20px" />
           </div>
-          <div className="p-2 rounded-full hover:bg-gray-200">
+          <div className="p-2 rounded-full hover:bg-gray-200 shrink-0">
             <IoMdMore size="20px" />
           </div>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="hidden sm:flex items-center gap-2">
           <span>1 to 50</span>
           <MdKeyboardArrowLeft size="24px" />
           <MdKeyboardArrowRight size="24px" />
         </div>
       </div>
-      <div className="h-[90vh] overflow-y-auto p-4">
-        <div className="flex justify-between bg-white items-center gap-1">
-          <div className="flex items-center gap-2">
-            <h1 className="text-xl font-medium ">{selectedEmail?.subject || "No Subject"}</h1>
-            <span className={`text-sm rounded-md px-2 py-0.5 mt-1 ${
-              isSentEmail 
-                ? "bg-blue-100 text-blue-700" 
+      <div className="h-[calc(100vh-8rem)] sm:h-[calc(100vh-9rem)] overflow-y-auto p-3 sm:p-4">
+        <div className="flex justify-between bg-white items-start gap-2">
+          <div className="flex items-start sm:items-center gap-2 flex-wrap min-w-0">
+            <h1 className="text-lg sm:text-xl font-medium break-words">{selectedEmail?.subject || "No Subject"}</h1>
+            <span className={`text-xs sm:text-sm rounded-md px-2 py-0.5 ${
+              isSentEmail
+                ? "bg-blue-100 text-blue-700"
                 : "bg-gray-200 text-gray-700"
             }`}>
               {isSentEmail ? "Sent" : "Inbox"}
             </span>
           </div>
-          <div className="flex-none text-gray-400">{formatDate(selectedEmail?.createdAt)}</div>
+          <div className="shrink-0 text-gray-400 text-xs sm:text-sm">{formatDate(selectedEmail?.createdAt)}</div>
         </div>
         <div className="flex-none py-4 text-gray-500 text-sm border-b border-gray-200">
           {isSentEmail ? (
