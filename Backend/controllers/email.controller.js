@@ -87,7 +87,7 @@ export const getAllEmailById = async(req,res)=>{
                      { userId: userId },  // Sent emails
                      { to: user.email }   // Received emails
                  ]
-             }).populate('userId', 'fullname email profilePhoto').sort({ createdAt: -1 });
+             }).populate('userId', 'fullname email profilePhoto').sort({ isPinned: -1, createdAt: -1 });
 
              return res
              .status(200)
@@ -95,6 +95,23 @@ export const getAllEmailById = async(req,res)=>{
 
     } catch (error) {
         console.log(error)
+        return res.status(500).json({ message: "Internal server error" });
+    }
+}
+
+export const togglePin = async (req, res) => {
+    try {
+        const email = await Email.findById(req.params.id);
+        if (!email) {
+            return res.status(404).json({ message: "Email not found", success: false });
+        }
+        email.isPinned = !email.isPinned;
+        await email.save();
+        const populated = await Email.findById(email._id)
+            .populate('userId', 'fullname email profilePhoto');
+        return res.status(200).json({ email: populated, success: true });
+    } catch (error) {
+        console.log(error);
         return res.status(500).json({ message: "Internal server error" });
     }
 }

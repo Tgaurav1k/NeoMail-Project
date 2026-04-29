@@ -19,7 +19,15 @@ const emailSchema = new mongoose.Schema({
         type:mongoose.Schema.Types.ObjectId,
     ref:'User',
     require:true
-}
+},
+    isWelcome:{
+        type:Boolean,
+        default:false
+    },
+    isPinned:{
+        type:Boolean,
+        default:false
+    }
 },{timestamps:true});
 
 emailSchema.index({ createdAt: 1 }, { expireAfterSeconds: 60 * 60 * 24 * 7 });

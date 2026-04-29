@@ -22,24 +22,35 @@ const ensureSystemUser = async () => {
   return systemUser;
 };
 
-const seedWelcomeEmails = async (newUser, systemUser) => {
-  const firstName = newUser.fullname.split(" ")[0];
+const ensureWelcomeEmails = async (user) => {
+  // idempotent — only seed if user has no welcome emails
+  const existing = await Email.findOne({ to: user.email, isWelcome: true });
+  if (existing) return;
+
+  const systemUser = await ensureSystemUser();
+  const firstName = user.fullname.split(" ")[0];
   const welcomeEmails = [
     {
-      to: newUser.email,
+      to: user.email,
       userId: systemUser._id,
+      isWelcome: true,
+      isPinned: true,
       subject: "👋 Welcome to NeoMail!",
       message: `Hi ${firstName},\n\nWelcome aboard! We're thrilled to have you as part of the NeoMail community.\n\nNeoMail is built to be fast, secure, and beautifully simple — everything you need to manage your inbox without the noise.\n\nClick around, explore the interface, and let us know what you think.\n\n— The NeoMail Team`,
     },
     {
-      to: newUser.email,
+      to: user.email,
       userId: systemUser._id,
+      isWelcome: true,
+      isPinned: true,
       subject: "✨ Quick tips to get you started",
-      message: `Hey ${firstName},\n\nHere are a few things you can try right now:\n\n1. Click the blue Compose button on the left to send your first email.\n2. Click any email in your inbox to open and read it.\n3. Use the back arrow to return to the inbox at any time.\n4. Hover over emails to see hover effects and quick actions.\n\nThat's it — you're all set. Have fun!\n\n— The NeoMail Team`,
+      message: `Hey ${firstName},\n\nHere are a few things you can try right now:\n\n1. Click the blue Compose button on the left to send your first email.\n2. Click any email in your inbox to open and read it.\n3. Use the back arrow to return to the inbox at any time.\n4. Click the pin icon on a pinned email to unpin it.\n\nThat's it — you're all set. Have fun!\n\n— The NeoMail Team`,
     },
     {
-      to: newUser.email,
+      to: user.email,
       userId: systemUser._id,
+      isWelcome: true,
+      isPinned: true,
       subject: "🚀 Your inbox, your rules",
       message: `Hi ${firstName},\n\nA quick note about how NeoMail works:\n\n• Your messages are encrypted and stored securely\n• Older emails (7+ days) auto-archive to keep things tidy\n• You can sign in from any device — your inbox follows you\n\nIf you ever have questions, just reply to this email. We read every message.\n\nHappy emailing!\n\n— The NeoMail Team`,
     },
@@ -76,14 +87,6 @@ export const register = async (req, res) => {
       password: hashedPassword,
       profilePhoto,
     });
-
-    // seed welcome emails (best-effort; don't fail signup if it errors)
-    try {
-      const systemUser = await ensureSystemUser();
-      await seedWelcomeEmails(newUser, systemUser);
-    } catch (err) {
-      console.log("Welcome email seeding failed:", err);
-    }
 
     return res.status(201).json({
       message: "Account created successfully.",
@@ -122,6 +125,13 @@ export const login = async (req, res) => {
         .status(401)
         .json({ messsage: "Incorrect email or password", success: false });
      
+        // seed welcome emails on login (best-effort, idempotent)
+        try {
+            await ensureWelcomeEmails(user);
+        } catch (err) {
+            console.log("Welcome email seeding failed:", err);
+        }
+
         // token generate for authendication
         const tokenData = {
             userId:user._id
